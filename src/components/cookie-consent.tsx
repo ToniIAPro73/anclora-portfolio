@@ -7,22 +7,29 @@ const STORAGE_KEY = "anclora-cookie-consent-v1"
 const defaults: CookiePreferences = { necessary: true, analytics: false, marketing: false, updatedAt: "", version: "v1" }
 
 export function CookieConsent() {
-  const [open, setOpen] = useState(() => {
-    if (typeof window === "undefined") return false
-    return !localStorage.getItem(STORAGE_KEY)
-  })
+  const [open, setOpen] = useState(false)
   const [settings, setSettings] = useState(false)
-  const [preferences, setPreferences] = useState<CookiePreferences>(() => {
-    if (typeof window === "undefined") return defaults
+  const [preferences, setPreferences] = useState<CookiePreferences>(defaults)
+
+  useEffect(() => {
+    // Reads localStorage after mount to avoid SSR/CSR hydration mismatch;
+    // the resulting setState calls are intentionally client-only, not a
+    // synchronization loop.
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       if (raw) {
         const parsed = JSON.parse(raw) as Partial<CookiePreferences>
-        return { necessary: true, analytics: Boolean(parsed.analytics), marketing: Boolean(parsed.marketing), updatedAt: parsed.updatedAt ?? "", version: "v1" }
+        setPreferences({ necessary: true, analytics: Boolean(parsed.analytics), marketing: Boolean(parsed.marketing), updatedAt: parsed.updatedAt ?? "", version: "v1" })
+        return
       }
-    } catch {}
-    return defaults
-  })
+      setOpen(true)
+    } catch {
+      setOpen(true)
+    }
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, [])
+
   useEffect(() => {
     const listener = () => { setOpen(true); setSettings(true) }
     window.addEventListener("anclora:open-cookie-preferences", listener)

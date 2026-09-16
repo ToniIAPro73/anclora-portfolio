@@ -11,7 +11,14 @@ const resolveInitialLanguage = (): Language => {
 }
 
 export const useLanguage = () => {
-  const [lang, setLang] = useState<Language>(resolveInitialLanguage)
+  const [lang, setLang] = useState<Language>("es")
+
+  useEffect(() => {
+    // Reads localStorage/navigator after mount to avoid SSR/CSR hydration
+    // mismatch; this setState call is intentionally client-only.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLang(resolveInitialLanguage())
+  }, [])
 
   useEffect(() => {
     localStorage.setItem("anclora_language", lang)

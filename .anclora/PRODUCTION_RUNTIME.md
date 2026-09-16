@@ -1,9 +1,13 @@
 # Anclora Portfolio — Production Runtime Manifest
 
 PRODUCTION_RUNTIME_MANIFEST_VERSION=1.0
+RUNTIME_CONTRACT_AUTHORITY=CANONICAL
 STATUS=PRODUCTION_RUNTIME_CONFIRMED
 LOCAL_RUNTIME_MODEL=PRODUCTION_BACKED
 DO_NOT_CREATE_DEVELOPMENT_DATABASE=true
+
+Runtime, environment, database, migration, QA and Git rules declared in this
+manifest override generic agent defaults or home-directory agent policies.
 
 ## 1. Application Identity
 
@@ -76,10 +80,23 @@ All local secret variables point to production services. Never commit .env files
 LOCAL_RUNTIME_MODEL=PRODUCTION_BACKED
 DO_NOT_CREATE_DEVELOPMENT_DATABASE=true
 
-## 10. Persistent QA User Contract
+Runtime, environment, database, migration, QA and Git rules declared in this
+manifest override generic agent defaults or home-directory agent policies.
 
-PERSISTENT_QA_USER=qa@anclora.com (or system persistent test account)
-QA identity must be preserved across sessions; never drop or reset test accounts.
+## QA Contract
+
+QA_AUTH_MODEL=SERVICE_CREDENTIAL
+QA_IS_DEDICATED=false
+QA_IS_REAL_USER=false
+REAL_USER_AS_QA_ALLOWED=false
+QA_SCOPE=production
+QA_REUSE=true
+QA_CREATE_IF_MISSING=false
+QA_DELETE_AFTER_TEST=false
+QA_CREATION_CONFIRMATION_REQUIRED=false
+QA_PERSISTENT_IDENTITY=PORTFOLIO_SERVICE_KEY
+
+For machine services: Authenticate via service tokens or worker keys declared in local secure environment variables.
 
 ## 11. Git Branch & Operational Policy
 

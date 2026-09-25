@@ -176,7 +176,9 @@ Las apps del ecosistema pueden usar alguna o todas estas categorías. Solo deben
 
 ```html
 <!-- Correcto: botón semántico -->
-<button type="button" onclick="openCookiePreferences()">Cookies</button>
+<button type="button" onclick="openCookiePreferences()">
+  Cookies
+</button>
 ```
 
 ### Implementación incorrecta
@@ -291,18 +293,18 @@ Antes de dar un repo por conforme con este contrato, verificar:
 
 Los siguientes patrones no están permitidos en ningún repo del ecosistema Anclora Group:
 
-| Antipatrón                                                                              | Motivo                                                                         |
-| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| "Aceptar todo" como botón primario destacado y "Rechazar" oculto o como enlace de texto | Dark pattern — dificulta rechazo                                               |
-| Botón flotante de cookies que solapa footer, CTAs o contenido principal                 | Genera confusión y accesibilidad deficiente                                    |
-| `position: absolute` en footer de páginas legales largas                                | El footer sube a mitad del contenido                                           |
-| Mostrar categorías de marketing o analítica cuando no existen en producción             | Falta de veracidad del consentimiento                                          |
-| Cargar Google Analytics, Pixel u otros por defecto sin consentimiento                   | Incumplimiento de principio de consentimiento previo                           |
-| Banner de cookies con texto de una línea sin enlace a política                          | Consentimiento sin información suficiente                                      |
-| Textos de cookies hardcodeados en español en apps multilingües                          | Rompe i18n — ver [[LOCALIZATION_CONTRACT]]                                     |
-| `<a href="#">` o `<a href="javascript:void(0)">` para abrir el modal de cookies         | Semántica incorrecta, problemas de accesibilidad                               |
-| Cookies técnicas con toggle desactivable por el usuario                                 | Las cookies técnicas no requieren consentimiento y no deben poder desactivarse |
-| Forzar recarga de página al guardar preferencias sin advertencia                        | Mala UX; solo aceptable si es técnicamente inevitable                          |
+| Antipatrón | Motivo |
+|---|---|
+| "Aceptar todo" como botón primario destacado y "Rechazar" oculto o como enlace de texto | Dark pattern — dificulta rechazo |
+| Botón flotante de cookies que solapa footer, CTAs o contenido principal | Genera confusión y accesibilidad deficiente |
+| `position: absolute` en footer de páginas legales largas | El footer sube a mitad del contenido |
+| Mostrar categorías de marketing o analítica cuando no existen en producción | Falta de veracidad del consentimiento |
+| Cargar Google Analytics, Pixel u otros por defecto sin consentimiento | Incumplimiento de principio de consentimiento previo |
+| Banner de cookies con texto de una línea sin enlace a política | Consentimiento sin información suficiente |
+| Textos de cookies hardcodeados en español en apps multilingües | Rompe i18n — ver [[LOCALIZATION_CONTRACT]] |
+| `<a href="#">` o `<a href="javascript:void(0)">` para abrir el modal de cookies | Semántica incorrecta, problemas de accesibilidad |
+| Cookies técnicas con toggle desactivable por el usuario | Las cookies técnicas no requieren consentimiento y no deben poder desactivarse |
+| Forzar recarga de página al guardar preferencias sin advertencia | Mala UX; solo aceptable si es técnicamente inevitable |
 
 ---
 
@@ -376,20 +378,17 @@ Gestión de cookies
 Antes de marcar un repo como conforme, se recomienda:
 
 ### Desktop
-
 - Captura del banner inicial en la primera carga.
 - Captura del modal de preferencias abierto.
 - Captura del footer con el enlace/botón de cookies visible.
 - Navegación directa a `/terms`, `/privacy`, `/legal` para confirmar que cargan.
 
 ### Mobile
-
 - Captura del banner en viewport de 375px o equivalente.
 - Verificar que los botones son pulsables y legibles.
 - Verificar que el footer no solapa el banner.
 
 ### Build y lint
-
 - `npm run lint` (o equivalente) sin errores relacionados con el módulo de cookies.
 - `npm run build` o `npm run typecheck` sin errores nuevos introducidos por el módulo.
 
@@ -397,9 +396,9 @@ Antes de marcar un repo como conforme, se recomienda:
 
 ## Sincronización con repos consumidores
 
-- Contrato fuente en la bóveda: `contracts/logic/COOKIES_CONSENT_CONTRACT.md`
-- Target normal de propagación: `docs/standards/` en cada repo consumidor
-- La adopción se registra en `contracts/governance/CONTRACT_COMPLIANCE_MATRIX.md`
+- Contrato fuente en la bóveda: `00-governance/contracts/logic/COOKIES_CONSENT_CONTRACT.md`
+- Target normal de propagación: `10-group/brand/` en cada repo consumidor
+- La adopción se registra en `00-governance/registry/CONTRACT_COMPLIANCE_MATRIX.md`
 
 ---
 

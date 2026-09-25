@@ -7,3 +7,6 @@ bun.lock
 package-lock.json
 .env
 .env.local
+
+# Copias canónicas de anclora-vault: se replican byte a byte, no se formatean
+docs/standards/

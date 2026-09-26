@@ -44,9 +44,6 @@ export const metadata: Metadata = {
       "en-US": "/",
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
   openGraph: {
     title: "Anclora Private Estates | The Zenith of Mediterranean Living",
     description: "Blueprint portfolio project for premium real estate digital experience by Anclora Group.",

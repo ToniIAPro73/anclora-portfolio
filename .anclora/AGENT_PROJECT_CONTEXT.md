@@ -28,7 +28,7 @@ PRODUCT_FAMILY=Anclora Group
 When starting work in this repository, agents must read sources in this exact order:
 
 1. Current explicit instruction from Toni (highest operational priority).
-2. Workspace agent policy (`../../ANCLORA_WORKSPACE_AGENT_POLICY.md` — currently `WORKSPACE_POLICY_STATUS=PENDING_GLOBAL_INSTALLATION`, with `../../AGENTS.md` as interim workspace guidance).
+2. Workspace agent policy (`../../ANCLORA_WORKSPACE_AGENT_POLICY.md`, canonical and active; `../../AGENTS.md` is only its workspace adapter). Promotion semantics inherit the workspace Canonical Promotion Policy: default no automatic promotion; explicit current-task user authorization permits gated, repository-supported promotion.
 3. Repository agent rules (`../AGENTS.md`).
 4. `.anclora/AGENT_PROJECT_CONTEXT.md` (this file — bootstrap, index, routing, and authority map).
 5. `.anclora/PRODUCTION_RUNTIME.md` (canonical runtime contract: topology, database, migrations, QA, Git).
@@ -72,6 +72,7 @@ LEVEL 8: Historical / non-normative context (MEMORY.md, archives, legacy notes)
 ```
 
 ### Conflict Resolution Invariant:
+
 If an agent-specific instruction, global agent preset, home-directory rule,
 generic best practice, or repository-agnostic convention conflicts with an
 applicable Anclora canonical contract, the Anclora contract MUST be followed.
@@ -97,16 +98,19 @@ Workspace governance defines:
 [`../../ANCLORA_WORKSPACE_AGENT_POLICY.md`](../../ANCLORA_WORKSPACE_AGENT_POLICY.md)
 
 Defaults:
+
 - `QA_MODE=AUTO`
 - `CAVEMAN_MODE=AUTO`
 - `TOKEN_ECONOMY_POLICY=ADAPTIVE`
 
 QA classification determines verification depth:
+
 - `FAST`: minimum sufficient targeted validation; full repository test suites prohibited by default; stops when sufficient evidence exists.
 - `STANDARD`: focused functional verification; stops when sufficient evidence exists.
 - `FULL`: comprehensive verification; batched at meaningful boundaries.
 
 Caveman classification determines reasoning/exploration economy:
+
 - Dynamically evaluated at task / phase / coherent cluster granularity.
 - Deterministic, repetitive, low-ambiguity tasks -> `CAVEMAN=ON`.
 - Architectural design, investigation, diagnosis, ambiguity, security, DB design -> `CAVEMAN=OFF`.
@@ -114,6 +118,7 @@ Caveman classification determines reasoning/exploration economy:
 
 Task-level historical boilerplate does not override workspace classifications.
 Only explicit mission tokens change modes:
+
 - `QA_OVERRIDE=FAST|STANDARD|FULL`
 - `CAVEMAN_OVERRIDE=ON|OFF`
 
@@ -123,13 +128,13 @@ Repository-specific runtime minima are defined in [`PRODUCTION_RUNTIME.md`](PROD
 
 ## 4. Task Routing
 
-| Task Domain | Primary Authority to Read First | Secondary / Operational Sources |
-| :--- | :--- | :--- |
-| **Runtime / Hosting / Env** | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md) | `.env.local` (mode 0600) |
-| **Database / Migrations** | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md) | `./prisma` |
-| **AOS Governance** | [`.anclora/AOS_ADOPTION.md`](AOS_ADOPTION.md) | [`../../anclora-governance/`](../../anclora-governance/) |
-| **Design / UI Tokens** | [`../../anclora-design-system/`](../../anclora-design-system/) | [`../../anclora-vault/00-governance/contracts/`](../../anclora-vault/00-governance/contracts/) |
-| **Git Workflow** | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md) | `../AGENTS.md` |
+| Task Domain                 | Primary Authority to Read First                                | Secondary / Operational Sources                                                                |
+| :-------------------------- | :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| **Runtime / Hosting / Env** | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md)      | `.env.local` (mode 0600)                                                                       |
+| **Database / Migrations**   | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md)      | `./prisma`                                                                                     |
+| **AOS Governance**          | [`.anclora/AOS_ADOPTION.md`](AOS_ADOPTION.md)                  | [`../../anclora-governance/`](../../anclora-governance/)                                       |
+| **Design / UI Tokens**      | [`../../anclora-design-system/`](../../anclora-design-system/) | [`../../anclora-vault/00-governance/contracts/`](../../anclora-vault/00-governance/contracts/) |
+| **Git Workflow**            | [`.anclora/PRODUCTION_RUNTIME.md`](PRODUCTION_RUNTIME.md)      | `../AGENTS.md`                                                                                 |
 
 ## 5. Source Authority
 

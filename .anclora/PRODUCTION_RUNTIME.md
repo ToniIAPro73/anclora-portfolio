@@ -102,7 +102,6 @@ QA_MINIMUM_FOR_DATABASE_MIGRATION=FULL
 QA_MINIMUM_FOR_AUTH=FULL
 QA_MINIMUM_FOR_RELEASE_PROMOTION=FULL
 
-
 QA_AUTH_MODEL=SERVICE_CREDENTIAL
 QA_IS_DEDICATED=false
 QA_IS_REAL_USER=false
@@ -119,4 +118,4 @@ For machine services: Authenticate via service tokens or worker keys declared in
 ## 11. Git Branch & Operational Policy
 
 DEFAULT_BRANCH=development
-PROMOTION_POLICY=All work commits to development branch. Never push directly to main or production.
+PROMOTION_POLICY=Default development-only operation; no automatic promotion. Explicit current-task user authorization permits only the repository-supported governed promotion path, subject to all gates.

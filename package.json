@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "node ../anclora-infrastructure/scripts/free-port.mjs && next dev -p 3016",
+    "dev": "node -e \"const p='../anclora-infrastructure/scripts/free-port.mjs';if(require('fs').existsSync(p)){try{require('child_process').execFileSync(process.execPath,[p],{stdio:'inherit'})}catch(e){process.exit(e.status||1)}}\" && next dev -p 3016",
     "build": "next build && node scripts/copy-standalone.cjs",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
     "lint": "node scripts/run-eslint.cjs",

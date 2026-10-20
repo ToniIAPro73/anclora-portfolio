@@ -1,18 +1,19 @@
-# Checklist de validación — mecanismo de promoción
+# Checklist de validación — invariantes de promoción global
 
-**Alcance:** añadir `.github/workflows/promote.yml` (mismo workflow fast-forward que el resto de repos Anclora) y declararlo en `.anclora/PRODUCTION_RUNTIME.md` (`PROMOTION_MECHANISM`, `PROMOTION_FLOW`, `PROMOTION_SUPPORTED=true`).
+**Alcance:** propagar con `anclora-mods/scripts/adopt-repo.mjs` las invariantes nuevas de la política global de promoción a `.anclora/PRODUCTION_RUNTIME.md`: espera solo a que termine el workflow de cada salto, verificación de cada rama a cargo de Toni, alcance multi-repo y resumen único al final. Solo se añaden 6 líneas de contrato; no cambia código ni comportamiento de la aplicación.
 
 ## Comprobaciones ejecutadas
 
-| Comprobación                                 | Resultado             |
-| -------------------------------------------- | --------------------- |
-| Workflow idéntico al de `anclora-advisor-ai` | `cmp` sin diferencias |
-| Integridad del diff                          | `git diff --check`    |
+| Comprobación                                      | Resultado                   |
+| ------------------------------------------------- | --------------------------- |
+| `node scripts/adopt-repo.mjs apply --repo <repo>` | APPLIED                     |
+| Diff limitado a `.anclora/PRODUCTION_RUNTIME.md`  | 6 inserciones, sin borrados |
+| Tests del adopter (`adopt-repo.test.mjs`)         | PASS — 38 tests             |
 
 ## Verificación visual
 
-No aplica: solo workflow y documentación de contrato; sin cambios en la aplicación.
+No aplica: solo contrato de documentación.
 
 ## Promoción
 
-Se alinean `staging`, `production` y `main` con `development` por fast-forward manual, salvo que el CI de `development` falle.
+No solicitada en este cambio.

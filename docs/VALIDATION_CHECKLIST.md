@@ -1,19 +1,29 @@
-# Checklist de validación — invariantes de promoción: sin esperar al CI de origen
+# Checklist de validación — adopción AOS canónica (2026-10-30)
 
-**Alcance:** añadir con `anclora-mods/scripts/adopt-repo.mjs` dos líneas a `.anclora/PRODUCTION_RUNTIME.md`: `PROMOTION_AGENT_WAITS_FOR_SOURCE_CI=false` y `PROMOTION_DISPATCH_IMMEDIATELY=true`. Reflejan la política global: el agente lanza la promoción en cuanto hay autorización y no espera ni sondea el CI de la rama de origen; `promote.yml` rechaza un SHA con estado en fallo. No cambia código ni comportamiento de la aplicación.
+> Se sobrescribe en cada entrega; el historial queda en Git.
 
-## Comprobaciones ejecutadas
+**Repositorio:** anclora-portfolio
+**Rama:** development
+**Datos:** no se usaron ni modificaron datos de aplicación.
 
-| Comprobación                                      | Resultado                       |
-| ------------------------------------------------- | ------------------------------- |
-| `node scripts/adopt-repo.mjs apply --repo <repo>` | APPLIED                         |
-| `node scripts/adopt-repo.mjs check-all`           | 40 PASS, 1 exento, 0 bloqueados |
-| Diff limitado a `.anclora/PRODUCTION_RUNTIME.md`  | 2 inserciones                   |
+## 1. Qué cambia
 
-## Verificación visual
+- Bootstrap mínimo (`AGENTS.md`, adaptadores de proveedor) y contratos `.anclora/` alineados con el modelo AOS ratificado (D-2026-0042): autoridad en Governance, router mínimo, claves Preview heredadas retiradas, semántica de runtime derivada de hechos ya declarados.
+- Copias de contratos sincronizadas desde Vault (8 ficheros).
+- Sin cambios de código de producto, dependencias ni despliegue.
 
-No aplica: solo contrato de documentación.
+## 2. Ya comprobado por el agente
 
-## Promoción
+| Comprobación                                                           | Resultado |
+| ---------------------------------------------------------------------- | --------- |
+| `aos-adopt` inspect/plan/apply, diff limitado a ficheros contractuales | PASS      |
+| `runtime_semantics.py` sobre `.anclora/PRODUCTION_RUNTIME.md`          | PASS      |
+| Enlaces a Governance en los `.md` modificados, `git diff --check`      | PASS      |
 
-Se promueve `development` → `staging` → `production` → `main` con `promote.yml`.
+## 3. NOT_RUN
+
+Tests, lint, typecheck, build y E2E de la aplicación: el diff es solo documentación/configuración contractual.
+
+## 4. Para Toni
+
+Sin pasos manuales. Bloqueante: no.

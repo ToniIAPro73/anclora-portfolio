@@ -23,97 +23,96 @@ Definir los stacks tipográficos por categoría de aplicación. La tipografía e
 
 ### Entidad Matriz
 
-| Rol           | Fuente  | Peso | Fallback | Variable CSS     |
-| ------------- | ------- | ---- | -------- | ---------------- |
-| Body / UI     | Georgia | 400  | serif    | — (body directo) |
-| Labels / Caps | Georgia | 700  | serif    | —                |
+| Rol | Fuente | Peso | Fallback | Variable CSS |
+|-----|--------|------|----------|-------------|
+| Body / UI | Georgia | 400 | serif | — (body directo) |
+| Labels / Caps | Georgia | 700 | serif | — |
 
 Justificación: `anclora-group` usa serif para diferenciarse de todas las apps operativas. Transmite institucionalidad y autoridad corporativa. Es el único punto del ecosistema donde se usa serif como fuente principal de body.
 
 ```css
-body {
-  font-family: Georgia, "Times New Roman", serif;
-}
+body { font-family: Georgia, 'Times New Roman', serif; }
 ```
 
-| App             | Estado actual | Acción      |
-| --------------- | ------------- | ----------- |
-| `anclora-group` | Georgia ✓     | Sin cambios |
+| App | Estado actual | Acción |
+|-----|--------------|--------|
+| `anclora-group` | Georgia ✓ | Sin cambios |
 
 ---
 
 ### Internas (Advisor AI, Nexus, Content Generator AI)
 
-| Rol             | Fuente         | Peso    | Fallback              | Variable CSS  |
-| --------------- | -------------- | ------- | --------------------- | ------------- |
-| Display / H1-H2 | Inter          | 600-700 | system-ui, sans-serif | `--font-sans` |
-| Body / UI       | Inter          | 400-500 | system-ui, sans-serif | `--font-sans` |
-| Monospace       | JetBrains Mono | 400     | monospace             | `--font-mono` |
+| Rol | Fuente | Peso | Fallback | Variable CSS |
+|-----|--------|------|----------|-------------|
+| Display / H1-H2 | Inter | 600-700 | system-ui, sans-serif | `--font-sans` |
+| Body / UI | Inter | 400-500 | system-ui, sans-serif | `--font-sans` |
+| Monospace | JetBrains Mono | 400 | monospace | `--font-mono` |
 
 Justificación: Inter es la fuente más adecuada para interfaces operativas densas. Excelente legibilidad a tamaños pequeños, amplio soporte de pesos.
 
 ```css
---font-sans: "Inter", system-ui, -apple-system, sans-serif;
---font-mono: "JetBrains Mono", monospace;
+--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', monospace;
 ```
 
-| App                                      | Estado actual                                                                                                                                                                                                                            | Acción                                                           |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `anclora-advisor-ai`                     | Sin fuente custom                                                                                                                                                                                                                        | Añadir Inter como `--font-sans`                                  |
-| `anclora-nexus`                          | Inter ✓ + Playfair Display                                                                                                                                                                                                               | Eliminar Playfair (reservada para ultra premium)                 |
-| `anclora-content-generator-ai`           | DM Sans + Bricolage Grotesque                                                                                                                                                                                                            | Eliminar ambas, migrar a Inter                                   |
-| `anclora-filestudio` _(añadido 2026-08)_ | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color)                                                                                                                                                 | Confirmar/añadir Inter como `--font-sans`                        |
-| `anclora-fiscal`                         | **Excepción formal 2026-08** — Montserrat + Playfair Display + EB Garamond vía `next/font`, respaldada por ADR-003/004 de `docs/decision-log.md` del propio repo (identidad visual compartida con Anclora Insights como sello editorial) | No aplicar Inter — excepción de marca aceptada, no deuda técnica |
-| `anclora-visionflow` _(añadido 2026-08)_ | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color)                                                                                                                                                 | Confirmar/añadir Inter como `--font-sans`                        |
+| App | Estado actual | Acción |
+|-----|--------------|--------|
+| `anclora-advisor-ai` | Sin fuente custom | Añadir Inter como `--font-sans` |
+| `anclora-nexus` | Inter ✓ + Playfair Display | Eliminar Playfair (reservada para ultra premium) |
+| `anclora-content-generator-ai` | DM Sans + Bricolage Grotesque | Eliminar ambas, migrar a Inter |
+| `anclora-filestudio` *(actualizado 2026-08-12)* | Inter añadida/verificada en auditoría branding 2026-08-01; QA final 2026-08-12 no cierra JetBrains Mono | Mantener Inter; añadir/verificar JetBrains Mono como `--font-mono` si se decide cerrar el gap |
+| `anclora-fiscal` | **Excepción formal 2026-08** — Montserrat + Playfair Display + EB Garamond vía `next/font`, respaldada por ADR-003/004 de `docs/decision-log.md` del propio repo (identidad visual compartida con Anclora Insights como sello editorial) | No aplicar Inter — excepción de marca aceptada, no deuda técnica |
+| `anclora-visionflow` *(añadido 2026-08)* | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir Inter como `--font-sans` |
+| `anclora-linguo-cam` *(añadido 2026-08-02)* | Inter ✓ como `--anclora-font-sans` (verificado en `index.css` real) | Sin cambios — ya conforme |
 
 ---
 
 ### Premium (Impulso, Data Lab, Talent, Synergi, Command Center)
 
-| Rol             | Fuente         | Peso    | Fallback              | Variable CSS  |
-| --------------- | -------------- | ------- | --------------------- | ------------- |
-| Display / H1-H2 | DM Sans        | 600-700 | system-ui, sans-serif | `--font-sans` |
-| Body / UI       | DM Sans        | 400-500 | system-ui, sans-serif | `--font-sans` |
-| Monospace       | JetBrains Mono | 400     | monospace             | `--font-mono` |
+| Rol | Fuente | Peso | Fallback | Variable CSS |
+|-----|--------|------|----------|-------------|
+| Display / H1-H2 | DM Sans | 600-700 | system-ui, sans-serif | `--font-sans` |
+| Body / UI | DM Sans | 400-500 | system-ui, sans-serif | `--font-sans` |
+| Monospace | JetBrains Mono | 400 | monospace | `--font-mono` |
 
 Justificación: DM Sans aporta un carácter más redondo y accesible que Inter, adecuado para productos orientados a usuario final. Sus formas geométricas suaves transmiten modernidad y cercanía, diferenciándose de la Inter operativa de las internas.
 
 ```css
---font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
---font-mono: "JetBrains Mono", monospace;
+--font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', monospace;
 ```
 
-| App                                   | Estado actual                                                                            | Acción                                                           |
-| ------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `anclora-impulso`                     | Sin fuente custom                                                                        | Añadir DM Sans                                                   |
-| `anclora-data-lab`                    | Georgia, serif                                                                           | Migrar a DM Sans. Georgia queda reservada para `anclora-group`.  |
-| `anclora-talent`                      | Sin fuente custom _(pausado, fuera de alcance activo)_                                   | Añadir DM Sans (si se reactiva)                                  |
-| `anclora-synergi`                     | Cardo (display) + Inter (body)                                                           | Eliminar Cardo (reservada para ultra premium). Migrar a DM Sans. |
-| `anclora-command-center`              | Sin fuente custom                                                                        | Añadir DM Sans                                                   |
-| `anclora-guesthub` _(añadido 2026-08)_ | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir DM Sans                                         |
+| App | Estado actual | Acción |
+|-----|--------------|--------|
+| `anclora-impulso` | Sin fuente custom | Añadir DM Sans |
+| `anclora-data-lab` | Georgia, serif | Migrar a DM Sans. Georgia queda reservada para `anclora-group`. |
+| `anclora-talent` | Sin fuente custom *(pausado, fuera de alcance activo)* | Añadir DM Sans (si se reactiva) |
+| `anclora-synergi` | Cardo (display) + Inter (body) | Eliminar Cardo (reservada para ultra premium). Migrar a DM Sans. |
+| `anclora-command-center` | Sin fuente custom | Añadir DM Sans |
+| `anclora-guesthub` *(añadido 2026-08 como `anclora-syncxml`; renombrado a GuestHub 2026-08)* | Pendiente de verificar fuente real — no auditado en esta sesión (solo se verificó color) | Confirmar/añadir DM Sans |
 
 ---
 
 ### Ultra Premium (Private Estates, Private Estates Landing)
 
-| Rol                 | Fuente   | Peso    | Fallback              | Variable CSS     |
-| ------------------- | -------- | ------- | --------------------- | ---------------- |
-| Display / H1-H2     | Cardo    | 400-700 | Georgia, serif        | `--font-display` |
-| Body / UI           | Inter    | 400-500 | system-ui, sans-serif | `--font-sans`    |
-| Acentos editoriales | Fraunces | 400-600 | Georgia, serif        | `--font-accent`  |
+| Rol | Fuente | Peso | Fallback | Variable CSS |
+|-----|--------|------|----------|-------------|
+| Display / H1-H2 | Cardo | 400-700 | Georgia, serif | `--font-display` |
+| Body / UI | Inter | 400-500 | system-ui, sans-serif | `--font-sans` |
+| Acentos editoriales | Fraunces | 400-600 | Georgia, serif | `--font-accent` |
 
 Justificación: Contraste serif (display) + sans-serif (body) clásico de marcas de lujo. Cardo aporta elegancia mediterránea. Fraunces añade un tercer registro para citas y acentos narrativos.
 
 ```css
---font-display: "Cardo", Georgia, serif;
---font-sans: "Inter", system-ui, -apple-system, sans-serif;
---font-accent: "Fraunces", Georgia, serif;
+--font-display: 'Cardo', Georgia, serif;
+--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+--font-accent: 'Fraunces', Georgia, serif;
 ```
 
-| App                                    | Estado actual                                       | Acción                                  |
-| -------------------------------------- | --------------------------------------------------- | --------------------------------------- |
-| `anclora-private-estates`              | Cardo ✓ + Inter ✓ + Fraunces ✓ + Cormorant Garamond | Eliminar Cormorant (de 4 a 3 fuentes)   |
-| `anclora-private-estates-landing-page` | `font-serif` genérico                               | Adoptar Cardo y Fraunces explícitamente |
+| App | Estado actual | Acción |
+|-----|--------------|--------|
+| `anclora-private-estates` | Cardo ✓ + Inter ✓ + Fraunces ✓ + Cormorant Garamond | Eliminar Cormorant (de 4 a 3 fuentes) |
+| `anclora-private-estates-landing-page` | `font-serif` genérico | Adoptar Cardo y Fraunces explícitamente |
 
 ---
 
@@ -127,39 +126,39 @@ Justificación: Contraste serif (display) + sans-serif (body) clásico de marcas
 
 ## Reserva de fuentes
 
-| Fuente         | Categoría reservada             | Rol                  |
-| -------------- | ------------------------------- | -------------------- |
-| Georgia        | Entidad Matriz                  | Body + display       |
-| Inter          | Internas + Ultra Premium (body) | Sans-serif operativa |
-| JetBrains Mono | Internas + Premium              | Monospace            |
-| DM Sans        | Premium                         | Body + display       |
-| Cardo          | Ultra Premium                   | Display serif        |
-| Fraunces       | Ultra Premium                   | Acentos editoriales  |
+| Fuente | Categoría reservada | Rol |
+|--------|--------------------|----|
+| Georgia | Entidad Matriz | Body + display |
+| Inter | Internas + Ultra Premium (body) | Sans-serif operativa |
+| JetBrains Mono | Internas + Premium | Monospace |
+| DM Sans | Premium | Body + display |
+| Cardo | Ultra Premium | Display serif |
+| Fraunces | Ultra Premium | Acentos editoriales |
 
 ## Tabla de migración completa
 
-| App                                    | Categoría           | Fuentes a añadir                               | Fuentes a eliminar           |
-| -------------------------------------- | ------------------- | ---------------------------------------------- | ---------------------------- |
-| `anclora-group`                        | Entidad Matriz      | —                                              | —                            |
-| `anclora-advisor-ai`                   | Interna             | Inter                                          | —                            |
-| `anclora-nexus`                        | Interna             | —                                              | Playfair Display             |
-| `anclora-content-generator-ai`         | Interna             | Inter                                          | DM Sans, Bricolage Grotesque |
-| `anclora-filestudio`                   | Interna             | Inter _(pendiente de verificar estado real)_   | Pendiente de auditoría       |
-| `anclora-fiscal`                       | Interna             | Inter _(pendiente de verificar estado real)_   | Pendiente de auditoría       |
-| `anclora-visionflow`                   | Interna             | Inter _(pendiente de verificar estado real)_   | Pendiente de auditoría       |
-| `anclora-impulso`                      | Premium             | DM Sans                                        | —                            |
-| `anclora-data-lab`                     | Premium             | DM Sans                                        | Georgia                      |
-| `anclora-talent`                       | Premium _(pausado)_ | DM Sans                                        | —                            |
-| `anclora-synergi`                      | Premium             | DM Sans                                        | Cardo, Inter                 |
-| `anclora-command-center`               | Premium             | DM Sans                                        | —                            |
-| `anclora-guesthub`                      | Premium             | DM Sans _(pendiente de verificar estado real)_ | Pendiente de auditoría       |
-| `anclora-private-estates`              | Ultra Premium       | —                                              | Cormorant Garamond           |
-| `anclora-private-estates-landing-page` | Ultra Premium       | Cardo, Fraunces                                | —                            |
+| App | Categoría | Fuentes a añadir | Fuentes a eliminar |
+|-----|-----------|-------------------|-------------------|
+| `anclora-group` | Entidad Matriz | — | — |
+| `anclora-advisor-ai` | Interna | Inter | — |
+| `anclora-nexus` | Interna | — | Playfair Display |
+| `anclora-content-generator-ai` | Interna | Inter | DM Sans, Bricolage Grotesque |
+| `anclora-filestudio` | Interna | — (Inter ya presente según auditoría branding 2026-08-01) | JetBrains Mono pendiente como `--font-mono` |
+| `anclora-fiscal` | Interna | Inter *(pendiente de verificar estado real)* | Pendiente de auditoría |
+| `anclora-visionflow` | Interna | Inter *(pendiente de verificar estado real)* | Pendiente de auditoría |
+| `anclora-linguo-cam` | Interna | — (Inter ya presente, verificado 2026-08-02) | — |
+| `anclora-impulso` | Premium | DM Sans | — |
+| `anclora-data-lab` | Premium | DM Sans | Georgia |
+| `anclora-talent` | Premium *(pausado)* | DM Sans | — |
+| `anclora-synergi` | Premium | DM Sans | Cardo, Inter |
+| `anclora-command-center` | Premium | DM Sans | — |
+| `anclora-guesthub` | Premium | DM Sans *(pendiente de verificar estado real)* | Pendiente de auditoría |
+| `anclora-private-estates` | Ultra Premium | — | Cormorant Garamond |
+| `anclora-private-estates-landing-page` | Ultra Premium | Cardo, Fraunces | — |
 
 ## Criterio de cumplimiento
 
 Una app no cumple este contrato si:
-
 - Usa una fuente no asignada a su categoría
 - Mezcla fuentes de dos categorías en la misma vista
 - No declara `--font-sans` explícitamente en CSS
@@ -171,8 +170,8 @@ Una app no cumple este contrato si:
 Aunque las superficies `portfolio` están fuera de alcance de este contrato (ver `ANCLORA_BRANDING_MASTER_CONTRACT.md`), `anclora-group-landing` es una excepción documentada: su repo real (`src/styles/tokens.css`) implementa el brand book completo, incluida tipografía propia verificada:
 
 ```css
---font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
---font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+--font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
 ```
 
 Coincide con el stack Premium (DM Sans + JetBrains Mono), no con un tema editorial genérico de portfolio.
